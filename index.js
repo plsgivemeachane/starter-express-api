@@ -175,7 +175,7 @@ app.get('/', async (req, res) => {
 
         var parts, start, end;
         if (req.headers.range != null) {
-            // console.log(req.headers.range)
+            console.log(req.headers.range)
             parts = req.headers.range.replace(/bytes=/, '').split('-');
             start = parseInt(parts[0], 10);
             end = parts[1] ? parseInt(parts[1], 10) : siez - 1;
@@ -202,7 +202,7 @@ app.get('/', async (req, res) => {
             headers['Content-Length'] = siez;
         }
 
-        // console.log(headers);
+        console.log(headers);
 
         // res.set(headers);
         if(req.headers.range){
@@ -275,7 +275,7 @@ app.get('/', async (req, res) => {
                     if (res2.status === 206) { // 206 Partial Content
                         // Extract the Content-Range header
                         const contentRange = res2.headers.get('Content-Range');
-                        // console.log(contentRange)
+                        console.log(contentRange)
 
                         // Ensure the range matches the request
                         // if (rangeStart === fetch_start && rangeEnd === fetch_end) {
@@ -333,14 +333,14 @@ app.get('/', async (req, res) => {
                 res.end();
             } else {
                 // siez = await getFileSize(file.data);
-                // console.log('One MUL REq');
+                console.log('One MUL REq');
                 for (var cid of file.data) {
                     if (cid.includes('https://')) {
                         cid = extractCID(cid);
                     }
                     // const res = await fetch(`https://ipfs.particle.network/${cid}`);
                     // const blob = new Uint8Array(await res.arrayBuffer());
-                    // console.log('process ' + cid);
+                    console.log('process ' + cid);
                     const response = await fetch(
                         `https://ipfs.particle.network/${cid}`
                     );
