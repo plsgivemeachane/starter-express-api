@@ -385,6 +385,4 @@ app.get('/', async (req, res) => {
     }
 });
 
-app.listen(5000, () => {
-    console.log('Server started on port 5000');
-});
+app.listen(3000, '0.0.0.0');
